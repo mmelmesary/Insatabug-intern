@@ -3,22 +3,19 @@ services:
   db:
     image: mysql
     volumes:
-       - db_data:/var/lib/mysql
-    container_name: golang-docker-web
+    - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: root
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
   app:
     depends_on:
-      - db
+    - db
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+    - "9090:9090"
     restart: always
     environment:
     - 'MYSQL_PORT=3306'
