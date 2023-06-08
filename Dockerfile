@@ -1,4 +1,4 @@
-FROM golang:1.17.1-alpine3.14
+FROM golang:alpine3.18
 
 
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY . /app
 RUN go mod download
 
 
-RUN go build -o app .
+RUN go build 
 
 
 EXPOSE 8080
