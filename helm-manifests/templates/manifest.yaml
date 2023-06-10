@@ -97,7 +97,7 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    app: {{.Values.mysql.name}}-h
+    app: {{.Values.mysql.name}}
   ports:
   - port: 3306
     targetPort: 3306
