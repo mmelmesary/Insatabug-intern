@@ -1,0 +1,26 @@
+app:
+  name: app
+  replicaCount: 2
+  minreplicas: 1
+  maxreplicas: 3
+  average_utilization: 70
+  image:
+    repository: melmesary/app
+    tag: v1.1
+
+mysql:
+  replicaCount: 2
+  minreplicas: 1
+  maxreplicas: 3
+  average_utilization: 70
+  name: mysql
+  image:
+    repository: mysql
+    tag: latest
+  volumeclaim:
+    name: data-vol
+  username: root
+  password: root
+
+storageclass:
+  name: "ebs-storage"
