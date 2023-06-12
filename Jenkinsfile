@@ -11,10 +11,9 @@ pipeline {
 
                     // Build Docker image
                     sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ."
-                    def buildLog = sh(returnStdout: true, script: "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} .")
 
                     // Check if build was successful
-                    if (buildLog.contains("Successfully built")) {
+                    if (sh(returnStatus: true, script: "docker images ${dockerRegistry}/${dockerImage}:${dockerTag} | grep ${dockerTag}")) {
                         echo "Docker image built successfully"
                     } else {
                         error "Docker image build failed"
