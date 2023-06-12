@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: instabug-app
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: instabug-system
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://mmelmesary.github.io/intern-test/helm-chart/'
+    targetRevision: 0.1.0
+    chart: helm-manifests
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
