@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     def dockerImage = 'instabugapp'
-                    def dockerTag = 'v1.2'
+                    def dockerTag = 'v2.0'
                     def dockerRegistry = 'melmesary'
 
                     // Build Docker image
