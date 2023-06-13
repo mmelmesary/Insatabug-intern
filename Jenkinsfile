@@ -10,7 +10,7 @@ pipeline {
                     def dockerRegistry = 'melmesary'
 
                     // Build Docker image
-                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ."
+                    sh "-x docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ."
 
                     // Check if build was successful
                     if (sh(returnStatus: true, script: "docker images ${dockerRegistry}/${dockerImage}:${dockerTag} | grep -q ${dockerTag}")) {
