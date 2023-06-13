@@ -1,13 +1,17 @@
-# Wow Such Program
+# Instabug intern task 
 
-This program is very simple, it connects to a MySQL database based on the following env vars:
-* MYSQL_HOST
-* MYSQL_USER
-* MYSQL_PASS
-* MYSQL_PORT
+🚨 This DevOps project showcases how to use Dockerfile, Jenkinsfile, docker-compose, k8s, Helm charts, and ArgoCD 
 
-And exposes itself on port 9090:
-* On `/healthcheck` it returns an OK message, 
-* On GET it returns all recorded rows.
-* On POST it creates a new row.
-* On PATCH it updates the creation date of the row with the same ID as the one specified in query parameter `id`
+## Step 1 : Dockerized Golang Application 
+
+The `Dockerfile` containes the instrutions how to build and run a Go application using Docker, and it exposes the application on port `9090`.
+
+To build the Docker image for this application, run the following command:
+
+    ```bash
+    docker build -t melmesary/golang-app:v1.0 .
+    ```
+> You should see an output like that when run the above command
+> ![slack-notifications](../../images/slack-notifications.PNG) 
+______ 
+ ## Step 2 : Pipline
