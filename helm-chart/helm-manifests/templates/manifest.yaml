@@ -25,13 +25,15 @@ spec:
         - name: MYSQL_HOST
           value: {{.Values.mysql.name}}-h
         - name: MYSQL_USER
-          envFrom:
-          - secretKeyRef:
-              name: username
-        - name: MYSQL_PASS
-          envFrom:
+          valueFrom:
             secretKeyRef:
-              name: password
+              name: db-secret
+              key: username
+        - name: MYSQL_PASS
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
                 
 
 ---
@@ -41,7 +43,7 @@ kind: Service
 metadata:
   name: {{.Values.app.name}}-svc
   labels:
-    app: go-app
+    app: {{.Values.app.name}}-svc
 spec:
   ports:
   - port: 9090
