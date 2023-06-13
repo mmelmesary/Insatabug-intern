@@ -18,7 +18,7 @@ pipeline {
                     } else {
                         error "Docker image build failed"
                     }
-}
+
                     // Push image to Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "docker login -u ${USERNAME} -p ${PASSWORD}"
