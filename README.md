@@ -18,7 +18,8 @@ docker build -t melmesary/golang-app:v1.0 .
 ______ 
 
  ## Step 2 : Pipeline Job
-##### Before building the pipeline job we need to set our jenkins up and running 
+
+**To use the pipeline job, you need to have Jenkins installed and install docker-client to run inside the jenkins. You also need to set up your DockerHub credentials in Jenkins**
 
 **First** The `jenkins_with_docker` file containes all the instructions to use docker-client with jenkins, so try to build an image from that file and then run a container
 
@@ -56,6 +57,13 @@ The pipeline job performs the following steps:
 
 1. Tag the Docker image and push it to DockerHub.
 
-To use the pipeline job, you need to have Jenkins installed and install docker-client to run inside the jenkins. You also need to set up your DockerHub credentials in Jenkins
+> ![docker-credentials](./pictures/dokcerhub-credentials.PNG) 
 
-> ![docker-build](./pictures/dokcerhub-credentials.PNG) 
+
+**Now** Create a new job and run your pipeline 
+
+> ![pipeline](./pictures/pipeline.PNG) 
+
+after running you pipeline you should see that your pipeline finished successfuly
+
+> ![pipeline](./pictures/pipeline-success.PNG) 
