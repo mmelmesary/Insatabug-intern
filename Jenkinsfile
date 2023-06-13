@@ -13,7 +13,7 @@ pipeline {
                     sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ."
 
                     // Check if build was successful
-                    if (sh(returnStatus: true, script: "docker images ${dockerRegistry}/${dockerImage}:${dockerTag} | grep -q ${dockerTag}")) {
+                    if (sh(returnStatus: true, script: "docker images ${dockerRegistry}/${dockerImage}:${dockerTag} | grep ${dockerTag}")) {
                         echo "Docker image built successfully"
                     } else {
                         error "Docker image build failed"
