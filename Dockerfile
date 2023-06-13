@@ -4,7 +4,7 @@ FROM golang:alpine3.18
 WORKDIR /app
 
 
-COPY . /app
+COPY ./app /app
 
 
 RUN go mod download
