@@ -8,9 +8,9 @@ The `Dockerfile` containes the instrutions how to build and run a Go application
 
 To build the Docker image for this application, run the following command:
 
-    ```bash
-    docker build -t melmesary/golang-app:v1.0 .
-    ```
+```bash
+docker build -t melmesary/golang-app:v1.0 .
+ ```
 > You should see an output like that when run the above command
 > ![docker-build](./pictures/docker-build.PNG) 
 ______ 
