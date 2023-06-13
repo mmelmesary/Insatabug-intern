@@ -5,9 +5,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerImage = 'my-docker-image'
-                    def dockerTag = 'latest'
-                    def dockerRegistry = 'docker.io'
+                    def dockerImage = 'instabug'
+                    def dockerTag = 'v2.0'
+                    def dockerRegistry = 'melmesary'
 
                     // Build Docker image
                     def dockerBuild = docker.build("${dockerRegistry}/${dockerImage}:${dockerTag}", "-f Dockerfile .")
