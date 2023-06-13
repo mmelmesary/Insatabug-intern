@@ -40,7 +40,7 @@ docker ps
 ```
 Open the Jenkins UI
 
-![docker-build](./pictures/docker-build.PNG) 
+![docker-build](./pictures/Jenkins-UI.PNG) 
 
 **✨ Contents**, Your Jenkins is now ready to create a job and run the pipline :tada:
 
