@@ -19,6 +19,11 @@ pipeline {
                         error "Docker image build failed"
                     }
 
+                    if (sh(returnStatus: true, script: "docker images ${dockerRegistry}/${dockerImage}:${dockerTag} | grep -q ${dockerTag}")) {
+                        echo "Docker image built successfully"
+                    } else {
+                        echo "Docker image build failed"
+}
                     // Push image to Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "docker login -u ${USERNAME} -p ${PASSWORD}"
