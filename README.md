@@ -12,6 +12,6 @@ To build the Docker image for this application, run the following command:
     docker build -t melmesary/golang-app:v1.0 .
     ```
 > You should see an output like that when run the above command
-> ![slack-notifications](../../images/slack-notifications.PNG) 
+> ![docker-build](./pictures/docker-build.PNG) 
 ______ 
  ## Step 2 : Pipline
