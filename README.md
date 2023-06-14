@@ -19,7 +19,7 @@ ______
 
  ## Step 2 : Pipeline Job
 
-**To use the pipeline job, you need to have Jenkins installed and install docker-client to run inside the jenkins. You also need to set up your DockerHub credentials in Jenkins**
+**To use the pipeline job, you need to have Jenkins installed and install docker-client plugin to run to run Docker commands inside Jenkins. Also You'll need to set up your DockerHub credentials in Jenkins**
 
 **First** The `jenkins_with_docker` file containes all the instructions to use docker-client with jenkins, so try to build an image from that file and then run a container
 
@@ -64,6 +64,33 @@ The pipeline job performs the following steps:
 
 > ![pipeline](./pictures/pipeline.PNG) 
 
-after running you pipeline you should see that your pipeline finished successfuly
+after running your pipeline you should see that your pipeline finished successfuly
 
-> ![pipeline](./pictures/pipeline-success.PNG) 
+> ![pipeline-success](./pictures/pipeline-success.PNG)
+ 
+> ![pipeline-sucess](./pictures/pipeline-success-2.PNG)
+
+___
+# Step 3: Docker Compose
+
+**The `docker-compose.yml` file defines a multi-container application that includes a MYSQL database service and our go application service.**
+
+ To run the application using Docker Compose, run the following command:
+
+ ```bash
+ docker-compose up 
+ ```
+
+ To stop the application, run the following command:
+
+```bash
+ docker-compose down 
+```
+To perform a *health check*, run the following command:
+
+```bash
+curl localhost:9090/healthcheck
+```
+it returns an `OK` message
+
+> ![pipeline-sucess](./pictures/healthcheck.PNG)

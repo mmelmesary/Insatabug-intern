@@ -9,6 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mysql
   app:
+    container_name: golang-app
     depends_on:
     - db
     build:
