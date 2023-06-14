@@ -43,7 +43,7 @@ Open the Jenkins UI
 
 ![docker-build](./pictures/Jenkins-UI.PNG) 
 
-**✨ Contents**, Your Jenkins is now ready to create a job and run the pipline :tada:
+> **✨ Contents**, Your Jenkins is now ready to create a job and run the pipline :tada:
 
  **Second** the `Jenkinsfile` file defines a pipeline job for building the application using the Dockerfile and reporting any errors that occur during the build process.
 
