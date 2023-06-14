@@ -113,7 +113,7 @@ ___
 
 # Step 6 : Create a public Helm chart repository with GitHub Pages
 
-1. #### Packaging the Helm Chart and Signing a Secret Key
+1. **Packaging the Helm Chart and Signing a Secret Key**
 
 
 ```bash
@@ -122,13 +122,13 @@ gpg --quick-generate-key "helm-chart"
 gpg --export-secret-keys>  ~/.gnupg/secret.gpg
 helm package --sign --key "helm-chart" --keyring  ~/.gnupg/secret.gpg ./helm-manifests
 ```
-1. #### Create the index.yaml file for the Helm repository 
+1. **Create the index.yaml file for the Helm repository** 
 
 ```bash
 Helm repo index --url <github_repository_path>
 ``` 
 
-1. #### Push the code to GitHub repository 
+1. **Push the code to GitHub repository**
 
 ```bash
 
@@ -139,7 +139,7 @@ git commit -m "Upload helm-chart" 
 git push 
 ```
 
-1. ### Create GitHub Pages once the code is pushed to GitHub 
+1. **Create GitHub Pages once the code is pushed to GitHub**
 
 ![pipeline-sucess](./pictures/github-pages.PNG)
 
@@ -197,3 +197,9 @@ I use [`lens`](https://k8slens.dev/) to provide a powerful and intuitive way to 
 
 ![lens](./pictures/lens-screenshot.PNG)
 ![pvc](./pictures/pvc.PNG)
+
+**Access the application using frontend-external service `loadbalancer`**
+
+```bash
+kubectl get svc app-svc -n instabug-system -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"
+```
