@@ -3,12 +3,12 @@ entries:
   helm-manifests:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-06-14T14:50:12.2487161+03:00"
+    created: "2023-06-14T16:21:05.8909559+03:00"
     description: A Helm chart for Kubernetes
-    digest: 787bb90cc2e244ca91081e604030be89964298300ee63de68e60e830b142e43d
+    digest: 2ab58ae76534a8140aed440b292887636964d9a674c13ca44ac63c9b641f11a5
     name: helm-manifests
     type: application
     urls:
-    - https://mmelmesary.github.io/Insatabug-intern/helm-chart/helm-manifests-0.1.0.tgz
+    - https://mmelmesary.github.io/Instabug-intern/helm-chart/helm-manifests-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-14T14:50:12.2356188+03:00"
+generated: "2023-06-14T16:21:05.8859164+03:00"
