@@ -94,3 +94,73 @@ curl localhost:9090/healthcheck
 it returns an `OK` message
 
 > ![pipeline-sucess](./pictures/healthcheck.PNG)
+
+___
+
+# Step 4 : Deploying the Application on Kubernetes with Helm
+
+To deploy the application on Kubernetes, we'll use **Helm**, a package manager for Kubernetes that simplifies the process of managing and deploying applications. We'll use Helm to install the application, along with the necessary configurations for high availability and volume persistence, and to expose a LoadBalancer service that can be accessed from outside the cluster.
+
+#### Prerequisites
+
+[x] deploy an EKS cluster and install `EBS CSI driver` as an Amazon EKS add-on.
+
+**All of the `Helm manifests` files for the application can be found in the helm-manifests directory.**
+___
+# Step 5 : To ensure that the application can handle increased traffic and load, we add an `autoscaling manifest` that scales the number of replicas based on resource usage metrics.
+
+___
+
+# Step 6 : ArgoCD for GitOps automation
+
+ ## First: Install ArgoCD and ArgoCD CLI tool
+
+ **We need to create a namespace for ArgoCD and install it.**
+
+  ```bash
+  kubectl create namespace argocd
+  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  ```
+**Check all resources get installed** 
+
+  ```bash
+  kubectl get all -n argocd
+  ```
+**Install ArgoCD CLI**
+
+> You can download the latest Argo CD version from **[the latest release page of this repository](https://github.com/argoproj/argo-cd/releases/tag/v2.7.1)**, which will include the argocd CLI
+
+## Second: Configuring ArgoCD:
+ 
+  ```bash
+  kubectl port-forward svc/argocd-server -n argocd 8080:443
+  ```
+We must now get our credentials to login.
+
+  ```bash
+  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+  ```
+
+This secret where the argocd server password is stored is not secure and should be deleted after updating the password with the command below.
+  
+  ```bash
+  argocd account update-password
+  ```
+
+## Third: Deploying our app: 
+
+We will deploy our APP using Helm provided by ArgoCD
+
+To deploy our app configuration, run the following command:
+
+```bash
+kubectl apply -f argocd-app.yaml
+```
+![ArgoCD-UI](./pictures/ArgoCD-UI.PNG)
+
+![ArgoCD-app](./pictures/ArgoCD-app.PNG)
+
+I use [`lens`](https://k8slens.dev/) to provide a powerful and intuitive way to view and manage our Kubernetes clusters
+
+![lens](./pictures/lens-screenshot.PNG)
+![pvc](./pictures/pvc.PNG)
