@@ -45,6 +45,7 @@ metadata:
   labels:
     app: {{.Values.app.name}}-svc
 spec:
+  type: LoadBalancer  # to expose service to public
   ports:
   - port: 9090
   selector:
@@ -73,7 +74,11 @@ spec:
         name: {{.Values.mysql.name}}
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "root"
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
+                
         - name:  MYSQL_DATABASE
           value: "root"
         ports:

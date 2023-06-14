@@ -9,7 +9,7 @@ spec:
     namespace: instabug-system
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: 'https://mmelmesary.github.io/intern-test/helm-chart/'
+    repoURL: 'https://mmelmesary.github.io/Instabug-intern/helm-chart/'
     targetRevision: 0.1.0
     chart: helm-manifests
   syncPolicy:
