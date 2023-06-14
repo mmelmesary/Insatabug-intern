@@ -208,13 +208,12 @@ ___
 
 # Step 8 : Securing Containers
 
-#### [x] Use Minimal Base Images :
-
+[x] **Use Minimal Base Images :**
 ```bash
 FROM golang:alpine3.18
 ```
-#### [x] Run Containers as Non-Root Users :
+[x] **Run Containers as Non-Root Users :**
 > ![secure](./pictures/secure-docker.png)
 
-#### [x] Run pods as Non-Root Users :
+[x] **Run pods as Non-Root Users :**
 > ![secure](./pictures/k8s-secure.png)
