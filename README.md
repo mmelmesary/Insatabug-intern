@@ -203,3 +203,18 @@ I use [`lens`](https://k8slens.dev/) to provide a powerful and intuitive way to 
 ```bash
 kubectl get svc app-svc -n instabug-system -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"
 ```
+
+___
+
+# Step 8 : Securing Containers
+
+#### [x] Use Minimal Base Images :
+
+```bash
+FROM golang:alpine3.18
+```
+#### [x] Run Containers as Non-Root Users :
+> ![secure](./pictures/secure-docker.png)
+
+#### [x] Run pods as Non-Root Users :
+> ![secure](./pictures/k8s-secure.png)
