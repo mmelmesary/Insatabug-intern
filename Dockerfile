@@ -1,4 +1,5 @@
-FROM golang:alpine3.18
+FROM golang:1.20.5-alpine3.18
+
 
 RUN addgroup go-group && adduser -D -G go-group go-user
 

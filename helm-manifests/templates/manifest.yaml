@@ -94,11 +94,11 @@ spec:
       name: {{.Values.mysql.volumeclaim.name}}
     spec:
       accessModes: 
-      - ReadWriteOnce
-      storageClassName: gp2
+      - {{.Values.volumeclaimtemplates.spec.accessmodes}}
+      storageClassName: {{.Values.storageclass.name}}
       resources:
         requests:
-          storage: 1Gi
+          storage: {{.Values.volumeclaimtemplates.spec.resources.requests.storage}}
 ---
 apiVersion: v1
 kind: Service

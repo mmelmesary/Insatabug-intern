@@ -4,14 +4,20 @@ services:
     image: mysql:5.7.42
     volumes:
     - db_data:/var/lib/mysql
+    networks:
+      - backend
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mysql
+      MYSQL_DATABASE: internship
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: P@ssw0rd
   app:
     container_name: golang-app
     depends_on:
     - db
+    links:
+      - "db:database"    # db is reachable from app at the hostnames db and database
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,9 +26,20 @@ services:
     - "9090:9090"
     restart: always
     environment:
-    - 'MYSQL_PORT=3306'
-    - 'MYSQL_HOST=db'
-    - 'MYSQL_USER=root'
-    - 'MYSQL_PASS=root'
+      MYSQL_PORT: 3306
+      MYSQL_HOST: db
+      MYSQL_USER: user1
+      MYSQL_PASS:  P@ssw0rd
+    networks:
+      - frontend
+      - backend
+
 volumes:
     db_data:
+
+networks:
+  frontend: 
+  backend:
+    internal: true
+
+

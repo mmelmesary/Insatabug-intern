@@ -17,8 +17,13 @@ mysql:
   image:
     repository: mysql
     tag: latest
-  volumeclaim:
+  volumeclaimtemplates:
     name: data-vol
+    spec:
+      accessmodes: ReadWriteOnce
+      resources:
+        request:
+          storage: 1Gi
   username: root
   password: root
 
