@@ -25,8 +25,8 @@ ___
   - Instructions: Link to Step 1 
 
 **`STEP 4`: Define a pipline job using jenkinsfile**
-  - Instructions: Link to Step 
-  1 
+  - Instructions: Link to Step 1 
+
 **`STEP 5`: Build the Docker-compose file**
   - Instructions: Link to Step 1 
 
@@ -45,7 +45,7 @@ ___
 
 This is a simple Flask application that provides CRUD (Create, Read, Update, Delete) operations for a MySQL database. The application allows you to manage user information, including their name, age, and job title. It is designed to be used with a MySQL database, and you can easily configure the necessary environment variables to connect to your desired database instance.
 
-The `Dockerfile` containes the instrutions how to build and run a flask application using Docker, and it exposes the application on port `5000`.
+The [Dockerfile](./src/Dockerfile) containes the instrutions how to build and run a flask application using Docker, and it exposes the application on port `5000`.
 
 
 ______ 
@@ -54,17 +54,17 @@ ______
 
 The main purpose of this step is to create a custom MySQL Docker image with pre-initialized data. The Docker image is built upon the official MySQL Docker image (mysql:latest), which ensures the latest stable version of MySQL is used.
 
-Review the `init.sql` file: The init.sql file located in the `src` directory contains the necessary SQL statements to create the database schema and tables, as well as insert the initial data into the MySQL database. You can customize this file to include your specific data requirements.
+Review the [init.sql](./src/init.sql) file: The init.sql file contains the necessary SQL statements to create the database schema and the table, as well as insert the initial data into the MySQL database. You can customize this file to include your specific data requirements.
 
-The `db.dockerfile` containes the instrutions how to build and run a custom mysql db container using Docker.
+The [db.dockerfile](./src/db.dockerfile) containes the instrutions how to build and run a custom mysql db container using Docker.
 
 ___
 
-**`STEP 3`: Configure Docker to Run inside Jenkins**
+## STEP 3: Configure Docker to Run inside Jenkins
 
 **To be able to run Docker commands from inside the jenkins, you need to have Jenkins installed and install docker-client plugin to run the Docker commands inside Jenkins. Also You'll need to set up your DockerHub credentials in Jenkins**
 
-**First** The `jenkins_with_docker` file containes all the instructions to use docker-client with jenkins, so try to build an image from that file and then run a container
+**First** The [jenkins_with_docker](./src/jenkins_with_docker.dockerfile) file containes all the instructions to use docker-client with jenkins, so try to build an image from that file and then run a container
 
 To build the Jenkins image, run the following command:
 
@@ -94,9 +94,9 @@ Open the Jenkins UI
 
 ___
 
-**`STEP 4`: Define a pipline job using jenkinsfile**
+## STEP 4: Define a pipline job using jenkinsfile
 
-the `Jenkinsfile` file defines a pipeline job for building the flask app and the custom mysql db containers using the Dockerfile and reporting any errors that occur during the build process.
+the [Jenkinsfile](./src/Jenkinsfile) file defines a pipeline job for building the flask app and the custom mysql db containers using the Dockerfile and reporting any errors that occur during the build process.
 
 The pipeline job performs the following steps:
 
@@ -155,20 +155,19 @@ ___
 
 ## STEP 6: Deploying the Application on Kubernetes with Helm
 
+**`Prerequisites`**: deploy an EKS cluster and install `EBS CSI driver` as an Amazon EKS add-on.
+
 To deploy the application on Kubernetes, we'll use **Helm**, a package manager for Kubernetes that simplifies the process of managing and deploying applications. We'll use Helm to install the application, along with the necessary configurations for high availability and volume persistence, and to expose a LoadBalancer service that can be accessed from outside the cluster.
 
-#### Prerequisites
 
-[x] deploy an EKS cluster and install `EBS CSI driver` as an Amazon EKS add-on.
-
-**All of the `Helm manifests` files for the application can be found in the helm-manifests directory.**
+**All of the `Helm manifests` files for the application can be found in the [helm-manifests](./helm-manifests/) directory.**
 
 **To ensure that the application can handle increased traffic and load, we add an `autoscaling manifest` that scales the number of replicas based on resource usage metrics.**
 ___
 
 # Step 7 : Create Public Helm Chart Repository with GitHub Pages
 
-1. **Packaging the Helm Chart and Signing a Secret Key**
+**1. Packaging the Helm Chart and Signing a Secret Key**
 
 
 ```bash
@@ -176,20 +175,20 @@ gpg --quick-generate-key "helm-chart"
 gpg --export-secret-keys>  ~/.gnupg/secret.gpg
 helm package --sign --key "helm-chart" --keyring  ~/.gnupg/secret.gpg ./helm-manifests
 ```
-1. **Create GitHub Pages**
+**2. Create GitHub Pages**
 
 GitHub Pages is a static site hosting service provided to you by GitHub, designed to host your pages directly from a GitHub repository. GitHub Pages is a perfect match for our purpose, since everything we need is to host a single  `index.yaml` file along with a `.tgz` file.
 
 ![pipeline-sucess](./pictures/github-pages.PNG)
 
 
-1. **Create the index.yaml file for the Helm repository** 
+**3. Create the index.yaml file for the Helm repository** 
 
 ```bash
 Helm repo index helm-chart --url <github_repository_path>
 ``` 
 
-1. **Push the code to GitHub repository**
+**4. Push the code to GitHub repository**
 
 ```bash
 
